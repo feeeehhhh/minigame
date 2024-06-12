@@ -49,6 +49,9 @@ const App: React.FC = () => {
   const handleSelectDifficulty = (nivelSelecionado: 'Easy' | 'Hard') => {
     setNivel(nivelSelecionado)
   }
+  const handleBackToInitial = () => {
+    setNivel(null) // Função para voltar ao Initial
+  }
 
   return (
     <main>
@@ -93,7 +96,7 @@ const App: React.FC = () => {
                 {nivel === null ? (
                   <Initial onSelectDifficulty={handleSelectDifficulty} />
                 ) : (
-                  <Game nivel={nivel} />
+                  <Game nivel={nivel} onBackToInitial={handleBackToInitial} />
                 )}
               </div>
             </DialogContent>
