@@ -23,6 +23,7 @@ const Game: React.FC<GameProps> = ({ nivel, onBackToInitial }) => {
     Array(6).fill(''),
   )
   const [jogoAtivo, setJogoAtivo] = useState<boolean>(false)
+  const [pontos, setPontos] = useState(0)
 
   const gameRef = useRef<HTMLDivElement>(null)
 
@@ -96,19 +97,18 @@ const Game: React.FC<GameProps> = ({ nivel, onBackToInitial }) => {
       audioCorreto.play()
       newCoresAnteriores[indiceAtual] = 'bg-green-500'
       setResultado('Caractere correto!')
+      setPontos((prevPontos) => prevPontos + 1)
     } else {
       audioErrado.play()
       newCoresAnteriores[indiceAtual] = 'bg-red-500'
       setResultado('Caractere incorreto!')
+      setPontos((prevPontos) => prevPontos - 1)
     }
 
     setCoresAnteriores(newCoresAnteriores)
 
     if (indiceAtual === 5) {
-      // Último caractere
-      if (tecla === esperado) {
-        setResultado('Você completou a sequência corretamente!')
-      }
+      setResultado(`Sua pontuação foi: ${pontos}`)
     } else {
       setIndiceAtual((prevIndice) => prevIndice + 1)
     }
@@ -126,7 +126,7 @@ const Game: React.FC<GameProps> = ({ nivel, onBackToInitial }) => {
           {caracteresSorteados.map((caractere, index) => (
             <motion.div
               key={index}
-              className={`flex text-slate-950 rounded-lg text-2xl p-2 px-4 font-bold bg-white ${
+              className={`flex text-slate-950 rounded-lg text-2xl p-2 px-4 font-bold ${
                 index === indiceAtual ? 'bg-blue-500 text-white' : ''
               } ${coresAnteriores[index]}`}
               initial={{ rotate: 0 }}
