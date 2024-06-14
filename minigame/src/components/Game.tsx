@@ -44,8 +44,8 @@ const Game: React.FC<GameProps> = ({ nivel, onBackToInitial }) => {
   }
 
   const handleBackToInitial = () => {
-    setJogoAtivo(false) // Garantir que o jogo pare se estiver ativo
-    onBackToInitial() // Chamar a função para voltar ao Initial
+    setJogoAtivo(false)
+    onBackToInitial()
   }
 
   const sortearCaracteres = (array: string[]) => {
@@ -131,7 +131,7 @@ const Game: React.FC<GameProps> = ({ nivel, onBackToInitial }) => {
               } ${coresAnteriores[index]}`}
               initial={{ rotate: 0 }}
               animate={
-                coresAnteriores[index] === 'bg-red-500' // Aplicar animação se for incorreto
+                coresAnteriores[index] === 'bg-red-500'
                   ? {
                       rotate: [0, 15, -15, 15, -15, 0],
                       transition: { duration: 0.5 },

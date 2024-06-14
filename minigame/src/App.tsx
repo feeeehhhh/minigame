@@ -43,14 +43,14 @@ const App: React.FC = () => {
 
   const handleClose = () => {
     setOpen(false)
-    setNivel(null) // Reset the game when closing the dialog
+    setNivel(null)
   }
 
   const handleSelectDifficulty = (nivelSelecionado: 'Easy' | 'Hard') => {
     setNivel(nivelSelecionado)
   }
   const handleBackToInitial = () => {
-    setNivel(null) // Função para voltar ao Initial
+    setNivel(null)
   }
 
   return (
